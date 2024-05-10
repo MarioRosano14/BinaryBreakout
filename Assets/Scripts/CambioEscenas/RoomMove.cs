@@ -6,48 +6,48 @@ using UnityEngine.SceneManagement;
 public class RoomMove : MonoBehaviour
 {
     private bool inRange = false;
-    private Collider playerCollider;
+    private Player data;
+
+    public Canvas canvas;
+
+    public void Start() {
+        canvas.gameObject.SetActive(false);
+        data = GetComponent<Player>();
+    }
+
     private void OnTriggerEnter(Collider other) {
-        if (other.gameObject.tag == "Player") {
+        if (other.gameObject.tag == "BibliotecaTrigger" || other.gameObject.tag == "PingPongTrigger") {
             inRange = true;
-            playerCollider = other;
+            if (other.gameObject.tag == "BibliotecaTrigger" && data.scene == 2) {
+                canvas.gameObject.SetActive(true);
+            }
+            else if (other.gameObject.tag == "PingPongTrigger" && data.scene == 4) {
+                canvas.gameObject.SetActive(true);
+            }
         }
     }
 
     private void OnTriggerExit(Collider other) {
-        if (other.gameObject.tag == "Player") {
+        if (other.gameObject.tag == "BibliotecaTrigger" || other.gameObject.tag == "PingPongTrigger") {
             inRange = false;
+            canvas.gameObject.SetActive(false);
         }
     }
 
     private void Update() {
         if (inRange) {
+
             if (Input.GetKeyDown(KeyCode.E)) {
-                GameObject player = playerCollider.gameObject;
-                Player data = player.GetComponent<Player>();
-                if (data.scene == 1) {
-                    data.scene = 2;
-                    SceneManager.LoadScene("Pruebas");
-                }
-                else if (data.scene == 2) {
+                
+                if (data.scene == 2) {
                     data.scene = 3;
-                    SceneManager.LoadScene("dasdasdw");
+                    SceneManager.LoadScene("Biblioteca");
                 }
-                // etc
+                else if (data.scene == 4) {
+                    data.scene = 5;
+                    SceneManager.LoadScene("PingPong");
+                }
             }
         }
-    }
-
-    public void ChangeRoom() {
-        GameObject player = GameObject.FindWithTag("Player");
-        /*
-        if (data.scene == 0) {
-                data.scene = 1;
-                SceneManager.LoadScene("asdasd");
-            }
-        else if (data.scene == 1) {
-            data.scene = 2;
-            SceneManager.LoadScene("dasdasdw");
-        }*/
     }
 }

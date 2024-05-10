@@ -12,6 +12,11 @@ TagManager:
   - MainInventory
   - ChangeScene
   - InventoryManager
+  - BibliotecaTrigger
+  - PingPongTrigger
+  - QButton
+  - AButton
+  - DButton
   layers:
   - Default
   - TransparentFX
