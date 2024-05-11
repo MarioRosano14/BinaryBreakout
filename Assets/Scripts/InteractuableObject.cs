@@ -10,6 +10,10 @@ public class InteractuableObject : MonoBehaviour, IPointerClickHandler
     public int count;
     public Item solItem;
 
+    public delegate void DelegarDialogos(DialogueData dialogueData);
+    public static event DelegarDialogos EventoDialogos;
+    public GameObject dialogueBox;
+
     public void Start() {
         GameObject IM = GameObject.FindWithTag("InventoryManager");
         inventoryManager = IM.GetComponent<InventoryManager>();
@@ -17,13 +21,17 @@ public class InteractuableObject : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData) {
         InventoryItem itemInSlot = inventoryManager.GetSelectedHandItem();
-        if (itemInSlot != null) {
+        if (!menuScript.inPause && !Dialogue.inDialogue && itemInSlot != null) {
             Item item = itemInSlot.item;
             if (item.name == name && itemInSlot.count == count) {
                 Destroy(itemInSlot.gameObject);
                 inventoryManager.AddItem(solItem);
-                // Dialogo obtener objeto
-                Debug.Log("Has conseguido " + solItem.name);
+
+                string[] lines = new string[] {"Has conseguido: " + solItem.name.ToString()};
+                string[] names = new string[] {"Luca"};
+                DialogueData dialogueData = new DialogueData(lines, names);
+                dialogueBox.SetActive(true);
+                EventoDialogos?.Invoke(dialogueData);
             }
         }
     }

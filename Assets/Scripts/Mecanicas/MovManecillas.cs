@@ -18,8 +18,6 @@ public class MovManecillas : MonoBehaviour
     public GameObject pointerMinutes;
     public GameObject pointerHours;
     public GameObject drawer;
-
-    public static bool inInventory = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +27,7 @@ public class MovManecillas : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!inInventory) {
+        if (!menuScript.inPause && !ShowInventory.inInventory && CamSwitch.inSpecial && !Dialogue.inDialogue) {
 
             if (Input.GetKeyDown(KeyCode.W)) {
                 if (selected != 2) {

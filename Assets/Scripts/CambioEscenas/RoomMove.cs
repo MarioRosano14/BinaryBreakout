@@ -35,7 +35,7 @@ public class RoomMove : MonoBehaviour
     }
 
     private void Update() {
-        if (inRange) {
+        if (inRange && !menuScriptInLobby.inPause) {
 
             if (Input.GetKeyDown(KeyCode.E)) {
                 

@@ -8,8 +8,7 @@ public class CamSwitch : MonoBehaviour
     public GameObject[] specialCameras;
     private int cameraIndex = 0;
     private int lastSpecialCameraIndex;
-    public bool inSpecial;
-    public bool inInventory;
+    public static bool inSpecial;
 
     public void Start() {
         for (int i = 0; i < cameras.Length; i++) {
@@ -21,12 +20,11 @@ public class CamSwitch : MonoBehaviour
         }
 
         inSpecial = false;
-        inInventory = false;
         cameras[0].SetActive(true);
     }
 
     public void Update() {
-        if (!inSpecial && !inInventory) {
+        if (!menuScript.inPause && !Dialogue.inDialogue && !inSpecial && !ShowInventory.inInventory) {
             if (Input.GetKeyDown(KeyCode.A)) {
                 cameras[cameraIndex].SetActive(false);
                 cameraIndex = (cameraIndex-1+cameras.Length)%cameras.Length;

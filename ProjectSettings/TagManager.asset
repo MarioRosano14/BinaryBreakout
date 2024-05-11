@@ -17,6 +17,7 @@ TagManager:
   - QButton
   - AButton
   - DButton
+  - CajaDialogos
   layers:
   - Default
   - TransparentFX
