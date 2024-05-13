@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -8,8 +9,18 @@ public class InventoryManager : MonoBehaviour
     public InventorySlot[] inventorySlots;
     public InventorySlot[] combineSlots;
     public InventorySlot handSlot;
+    public Item[] newCombinedItems;
+
+    public delegate void DelegarDialogos(DialogueData dialogueData);
+    public static event DelegarDialogos EventoDialogos;
+    public GameObject dialogueBox;
+    public Button combineButton;
 
     public GameObject inventoryItemPrefab;
+
+    void Start() {
+        combineButton.onClick.AddListener(CombineItems);
+    }
 
     public bool AddItem(Item item) {
         // Comprobar si algún espacio tiene el mismo item con contador
@@ -50,21 +61,53 @@ public class InventoryManager : MonoBehaviour
         return itemInSlot;
     }
 
-    public Item CombineItems() {
+    public void CombineItems() {
         InventorySlot slot1 = combineSlots[0];
         InventorySlot slot2 = combineSlots[1];
-        InventoryItem item1 = slot1.GetComponentInChildren<InventoryItem>();
-        InventoryItem item2 = slot2.GetComponentInChildren<InventoryItem>();
+        InventoryItem itemInSlot1 = slot1.GetComponentInChildren<InventoryItem>();
+        InventoryItem itemInSlot2 = slot2.GetComponentInChildren<InventoryItem>();
 
-        if (item1 != null && item2 != null) {
-            Item item;
-            if (/*Comprobar que se puedan combinar*/true) {
-                //item = Combine(item1, item2);
+        string[] lines;
+        string[] names;
+        DialogueData dialogueData;
+
+        if (itemInSlot1 != null && itemInSlot2 != null) {
+            Item item1 = itemInSlot1.item;
+            Item item2 = itemInSlot2.item;
+            Item newItem = null;
+
+            if ((item1.name == "Basura" && item2.name == "Pico") ||
+                (item1.name == "Pico" && item2.name == "Basura")) {
+                foreach (Item cI in newCombinedItems) {
+                    if (cI.name == "Banco") {
+                        newItem = cI;
+
+                        Destroy(itemInSlot1.gameObject);
+                        Destroy(itemInSlot2.gameObject);
+                        AddItem(newItem);
+                        break;
+                    }
+                }
             }
-
-            //return item; 
+            
+            if (newItem != null) {
+                lines = new string[] {"Has fabricado: " + newItem.name};
+                names = new string[] {"Luca"};
+                dialogueData = new DialogueData(lines, names);
+            }
+            else {
+                lines = new string[] {"No creo que sirvan estos objetos"};
+                names = new string[] {"Profesor"};
+                dialogueData = new DialogueData(lines, names);
+            }
+        }
+        else {
+            lines = new string[] {"No es suficiente para combinar"};
+            names = new string[] {"Profesor"};
+            dialogueData = new DialogueData(lines, names);
         }
 
-        return null;
+        dialogueBox.SetActive(true);    
+        EventoDialogos?.Invoke(dialogueData);
     }
 }

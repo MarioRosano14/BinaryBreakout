@@ -25,6 +25,8 @@ public class Dialogue : MonoBehaviour
         // Suscribirse al evento OnButtonPressed
         EventClick.EventoDialogos += StartDialogue;
         InteractuableObject.EventoDialogos += StartDialogue;
+        InventoryManager.EventoDialogos += StartDialogue;
+        
         gameObject.SetActive(false);
     }
 

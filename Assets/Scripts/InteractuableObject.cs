@@ -21,18 +21,41 @@ public class InteractuableObject : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData) {
         InventoryItem itemInSlot = inventoryManager.GetSelectedHandItem();
-        if (!menuScript.inPause && !Dialogue.inDialogue && itemInSlot != null) {
-            Item item = itemInSlot.item;
-            if (item.name == name && itemInSlot.count == count) {
-                Destroy(itemInSlot.gameObject);
-                inventoryManager.AddItem(solItem);
+        if (!menuScript.inPause && !Dialogue.inDialogue) {
+            string[] lines;
+            string[] names;
+            DialogueData dialogueData;
+            if (itemInSlot != null) {
+                Item item = itemInSlot.item;
+                if (item.name == name) {
+                    if (itemInSlot.count == count) {
+                        Destroy(itemInSlot.gameObject);
+                        inventoryManager.AddItem(solItem);
 
-                string[] lines = new string[] {"Has conseguido: " + solItem.name.ToString()};
-                string[] names = new string[] {"Luca"};
-                DialogueData dialogueData = new DialogueData(lines, names);
-                dialogueBox.SetActive(true);
-                EventoDialogos?.Invoke(dialogueData);
+                        lines = new string[] {"Has conseguido: " + solItem.name.ToString()};
+                        names = new string[] {"Luca"};
+                        dialogueData = new DialogueData(lines, names);
+                    }
+                    else {
+                        lines = new string[] {"Parece que necesito más"};
+                        names = new string[] {"Profesor"};
+                        dialogueData = new DialogueData(lines, names);
+                    }
+                }
+                else{
+                    lines = new string[] {"No parece que funcione"};
+                    names = new string[] {"Profesor"};
+                    dialogueData = new DialogueData(lines, names);
+                }
             }
+            else {
+                lines = new string[] {"Parece que necesito algo aquí"};
+                names = new string[] {"Profesor"};
+                dialogueData = new DialogueData(lines, names);
+            }
+
+            dialogueBox.SetActive(true);
+            EventoDialogos?.Invoke(dialogueData);
         }
     }
 }
