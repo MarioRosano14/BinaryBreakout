@@ -89,6 +89,20 @@ public class InventoryManager : MonoBehaviour
                     }
                 }
             }
+
+            if ((item1.name == "Parte de madera (Pomo)" && item2.name == "Parte de hierro (Pomo)") ||
+                (item1.name == "Parte de hierro (Pomo)" && item2.name == "Parte de madera (Pomo)")) {
+                foreach (Item cI in newCombinedItems) {
+                    if (cI.name == "Pomo") {
+                        newItem = cI;
+
+                        Destroy(itemInSlot1.gameObject);
+                        Destroy(itemInSlot2.gameObject);
+                        AddItem(newItem);
+                        break;
+                    }
+                }
+            }
             
             if (newItem != null) {
                 lines = new string[] {"Has fabricado: " + newItem.name};

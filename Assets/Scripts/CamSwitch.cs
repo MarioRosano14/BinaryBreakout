@@ -7,7 +7,7 @@ public class CamSwitch : MonoBehaviour
     public GameObject[] cameras;
     public GameObject[] specialCameras;
     private int cameraIndex = 0;
-    private int lastSpecialCameraIndex;
+    public static int lastSpecialCameraIndex;
     public static bool inSpecial;
 
     public void Start() {

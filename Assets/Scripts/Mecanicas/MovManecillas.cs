@@ -12,22 +12,20 @@ public class MovManecillas : MonoBehaviour
     public int wantedHour;
     public int wantedSeconds;
 
-    private int selected;
+    public int cameraIdx;
+    private int selected = 0;
+    private bool check = false;
 
     public GameObject pointerSeconds;
     public GameObject pointerMinutes;
     public GameObject pointerHours;
     public GameObject drawer;
-    // Start is called before the first frame update
-    void Start()
-    {
-        selected = 0;
-    }
+    public Vector3 offset;
 
     // Update is called once per frame
     void Update()
     {
-        if (!menuScript.inPause && !ShowInventory.inInventory && CamSwitch.inSpecial && !Dialogue.inDialogue) {
+        if (cameraIdx == CamSwitch.lastSpecialCameraIndex && !menuScript.inPause && !ShowInventory.inInventory && CamSwitch.inSpecial && !Dialogue.inDialogue && !check) {
 
             if (Input.GetKeyDown(KeyCode.W)) {
                 if (selected != 2) {
@@ -106,13 +104,13 @@ public class MovManecillas : MonoBehaviour
             }
             
             if (hour == wantedHour && minutes == wantedMinutes && seconds == wantedSeconds) {
+                check = true;
                 MoveDrawer();
             }
         }
     }
 
     public void MoveDrawer() {
-        //drawer.transform = new Vector3();
-        Debug.Log("Mover cajon");
+        drawer.transform.position = drawer.transform.position + offset;
     }
 }

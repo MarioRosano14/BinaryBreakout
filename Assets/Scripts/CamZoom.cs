@@ -14,9 +14,15 @@ public class CamZoom : MonoBehaviour, IPointerClickHandler
     public GameObject AButton;
     public GameObject DButton;
 
-    public void Start() {
-        QButton.SetActive(false);
+    private Collider collider;
 
+    public void Start() {
+        collider = GetComponent<Collider>();
+        if (collider == null) {
+            collider = GetComponentInChildren<Collider>();
+        }
+
+        QButton.SetActive(false);
         GameObject player = GameObject.FindWithTag("Player");
         camSwitch = player.GetComponent<CamSwitch>();
     }
@@ -28,6 +34,7 @@ public class CamZoom : MonoBehaviour, IPointerClickHandler
             QButton.SetActive(true);
             AButton.SetActive(false);
             DButton.SetActive(false);
+            collider.enabled = false;
         }
     }
 
@@ -38,6 +45,7 @@ public class CamZoom : MonoBehaviour, IPointerClickHandler
             QButton.SetActive(false);
             AButton.SetActive(true);
             DButton.SetActive(true);
+            collider.enabled = true;
         }
     }
 }
