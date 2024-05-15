@@ -14,6 +14,9 @@ public class InteractuableObject : MonoBehaviour, IPointerClickHandler
     public static event DelegarDialogos EventoDialogos;
     public GameObject dialogueBox;
 
+    public bool destroyGameObject;
+    private bool check = false;
+
     public void Start() {
         GameObject IM = GameObject.FindWithTag("InventoryManager");
         inventoryManager = IM.GetComponent<InventoryManager>();
@@ -35,6 +38,8 @@ public class InteractuableObject : MonoBehaviour, IPointerClickHandler
                         lines = new string[] {"Has conseguido: " + solItem.name.ToString()};
                         names = new string[] {"Luca"};
                         dialogueData = new DialogueData(lines, names);
+
+                        check = true; 
                     }
                     else {
                         lines = new string[] {"Parece que necesito más"};
@@ -56,6 +61,10 @@ public class InteractuableObject : MonoBehaviour, IPointerClickHandler
 
             dialogueBox.SetActive(true);
             EventoDialogos?.Invoke(dialogueData);
+
+            if (check && destroyGameObject) {
+                gameObject.SetActive(false);
+            }
         }
     }
 }

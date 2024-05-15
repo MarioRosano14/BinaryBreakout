@@ -18,4 +18,4 @@ MonoBehaviour:
   range: {x: 5, y: 4}
   name: Parte de hierro (Pomo)
   stackable: 1
-  image: {fileID: 21300000, guid: 9d7c6e4896067aa4fa512a00f692ac1c, type: 3}
+  image: {fileID: 21300000, guid: d251b1081527a5840942e1e0dba2882a, type: 3}

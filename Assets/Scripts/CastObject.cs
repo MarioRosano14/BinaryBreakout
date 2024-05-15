@@ -15,10 +15,18 @@ public class CastObject : MonoBehaviour, IPointerClickHandler
     public static event DelegarDialogos EventoDialogos;
     public GameObject dialogueBox;
     private bool check = false;
+    public bool deactivateChangeScene;
+    public bool deactivateCollider;
+    private Collider collider;
 
     private int iter = 0;
 
     public void Start() {
+        collider = GetComponent<Collider>();
+        if (GetComponent<Collider>() == null) {
+            collider = GetComponentInChildren<Collider>();
+        }
+
         foreach(GameObject gO in castGameObjects) {
             gO.SetActive(false);
         }
@@ -44,7 +52,13 @@ public class CastObject : MonoBehaviour, IPointerClickHandler
 
                         check = true;
                         dialogueData = null;
-                        Invoke("CambiarEscena", 1.5f);
+                        if (deactivateCollider) {
+                            GetComponent<Collider>().enabled = false;
+                        }
+
+                        if (!deactivateChangeScene) {
+                            Invoke("CambiarEscena", 1.5f);
+                        }
                     }
                     else {
                         lines = new string[] {"Parece que necesito más"};

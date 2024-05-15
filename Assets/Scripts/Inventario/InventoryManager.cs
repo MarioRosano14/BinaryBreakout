@@ -76,10 +76,10 @@ public class InventoryManager : MonoBehaviour
             Item item2 = itemInSlot2.item;
             Item newItem = null;
 
-            if ((item1.name == "Basura" && item2.name == "Pico") ||
-                (item1.name == "Pico" && item2.name == "Basura")) {
+            if ((item1.name == "Parte de madera (Pomo)" && item2.name == "Parte de hierro (Pomo)") ||
+                (item1.name == "Parte de hierro (Pomo)" && item2.name == "Parte de madera (Pomo)")) {
                 foreach (Item cI in newCombinedItems) {
-                    if (cI.name == "Banco") {
+                    if (cI.name == "Pomo") {
                         newItem = cI;
 
                         Destroy(itemInSlot1.gameObject);
@@ -90,10 +90,10 @@ public class InventoryManager : MonoBehaviour
                 }
             }
 
-            if ((item1.name == "Parte de madera (Pomo)" && item2.name == "Parte de hierro (Pomo)") ||
-                (item1.name == "Parte de hierro (Pomo)" && item2.name == "Parte de madera (Pomo)")) {
+            if ((item1.name == "Pala de metal" && item2.name == "Huevo de oro") ||
+                (item1.name == "Huevo de oro" && item2.name == "Pala de metal")) {
                 foreach (Item cI in newCombinedItems) {
-                    if (cI.name == "Pomo") {
+                    if (cI.name == "Pieza de ajedrez (Caballo)") {
                         newItem = cI;
 
                         Destroy(itemInSlot1.gameObject);

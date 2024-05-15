@@ -41,7 +41,7 @@ public class ClosetScript : MonoBehaviour, IPointerClickHandler
                         leftDoor.transform.rotation = Quaternion.Euler(leftDoor.transform.rotation.eulerAngles +
                                                          new Vector3(0, 90, 0));
                         rightDoor.transform.rotation = Quaternion.Euler(rightDoor.transform.rotation.eulerAngles +
-                                                         new Vector3(0, -110, 0));
+                                                         new Vector3(0, -37, 0));
 
                         check = true;
                         dialogueData = null;
