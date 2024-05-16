@@ -42,7 +42,7 @@ public class MovManecillas : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.D)) {
                 switch(selected) {
                     case 0:
-                        hour = (hour+1)%24;
+                        hour = (hour+1)%12;
                         break;
                     case 1:
                         minutes = (minutes+1)%60;
@@ -70,7 +70,7 @@ public class MovManecillas : MonoBehaviour
                     case 0:
                         hour--;
                         if (hour == -1) {
-                            hour = 23;
+                            hour = 11;
                         }
 
                         break;

@@ -17,6 +17,7 @@ public class AccessKeypad : MonoBehaviour
     }
 
     public void SceneKeypad() {
+        PlayerPrefs.SetInt("sceneInGame", 4);
         Invoke("CambiarEscena", 1.5f);
     }
 

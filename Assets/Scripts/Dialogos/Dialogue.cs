@@ -98,6 +98,15 @@ public class Dialogue : MonoBehaviour
             index=0;
         }
     }
+
+    private void OnDestroy()
+    {
+        PickObject.EventoDialogos -= StartDialogue;
+        InteractuableObject.EventoDialogos -= StartDialogue;
+        InventoryManager.EventoDialogos -= StartDialogue;
+        ClosetScript.EventoDialogos -= StartDialogue;
+        CastObject.EventoDialogos -= StartDialogue;
+    }
 }
 
 

@@ -61,11 +61,33 @@ public class menuScript : MonoBehaviour
     }
 
     public void SaveGame() {
-        Debug.Log("Guardas partida");
+        inPause = false;
+        canvas.SetActive(false);
+
+        if (Dialogue.inDialogue) {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+
+        PlayerData data = new PlayerData();
+        SaveSystem.SavePlayer(data);
     }
 
     public void QuitGame() {
         inPause = false;
-        SceneManager.LoadScene("MenuInicial");
+        Time.timeScale = 1f;
+
+        if (Dialogue.inDialogue) {
+            Dialogue.inDialogue = false;
+        }
+
+        if (ShowInventory.inInventory) {
+            ShowInventory.inInventory = false;
+        }
+
+        if (CamSwitch.inSpecial) {
+            CamSwitch.inSpecial = false;
+        }
+
+        SceneManager.LoadScene("MenuUI");
     }
 }

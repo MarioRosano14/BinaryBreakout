@@ -15,6 +15,9 @@ public class CastObject : MonoBehaviour, IPointerClickHandler
     public static event DelegarDialogos EventoDialogos;
     public GameObject dialogueBox;
     private bool check = false;
+
+    public string scene;
+    public int nextSceneID;
     public bool deactivateChangeScene;
     public bool deactivateCollider;
     private Collider collider;
@@ -86,6 +89,7 @@ public class CastObject : MonoBehaviour, IPointerClickHandler
     }
 
     private void CambiarEscena() {
-        SceneManager.LoadScene("Pasillo");
+        PlayerPrefs.SetInt("sceneInGame", nextSceneID);
+        SceneManager.LoadScene(scene);
     }
 }

@@ -6,22 +6,19 @@ using UnityEngine.SceneManagement;
 public class RoomMove : MonoBehaviour
 {
     private bool inRange = false;
-    private Player data;
-
     public Canvas canvas;
 
     public void Start() {
         canvas.gameObject.SetActive(false);
-        data = GetComponent<Player>();
     }
 
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.tag == "BibliotecaTrigger" || other.gameObject.tag == "PingPongTrigger") {
             inRange = true;
-            if (other.gameObject.tag == "BibliotecaTrigger" && data.scene == 2) {
+            if (other.gameObject.tag == "BibliotecaTrigger" && PlayerPrefs.GetInt("sceneInGame", 0) == 2) {
                 canvas.gameObject.SetActive(true);
             }
-            else if (other.gameObject.tag == "PingPongTrigger" && data.scene == 4) {
+            else if (other.gameObject.tag == "PingPongTrigger" && PlayerPrefs.GetInt("sceneInGame", 0) == 4) {
                 canvas.gameObject.SetActive(true);
             }
         }
@@ -39,12 +36,18 @@ public class RoomMove : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.E)) {
                 
-                if (data.scene == 2) {
-                    data.scene = 3;
+                if (PlayerPrefs.GetInt("sceneInGame", 0) == 2) {
+                    PlayerPrefs.SetInt("sceneInGame", 3);
+                    Cursor.lockState = CursorLockMode.None;
+                    Cursor.visible = true;
+                    PlayerPosition.moved = false;
                     SceneManager.LoadScene("Biblioteca");
                 }
-                else if (data.scene == 4) {
-                    data.scene = 5;
+                else if (PlayerPrefs.GetInt("sceneInGame", 0) == 4) {
+                    PlayerPrefs.SetInt("sceneInGame", 5);
+                    Cursor.lockState = CursorLockMode.None;
+                    Cursor.visible = true;
+                    PlayerPosition.moved = false;
                     SceneManager.LoadScene("PingPong");
                 }
             }

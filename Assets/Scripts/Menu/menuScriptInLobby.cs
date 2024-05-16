@@ -47,11 +47,16 @@ public class menuScriptInLobby : MonoBehaviour
     }
 
     public void SaveGame() {
-        Debug.Log("Guardas partida");
+        inPause = false;
+        canvas.SetActive(false);
+        Cursor.lockState = CursorLockMode.None;
+
+        PlayerData data = new PlayerData();
+        SaveSystem.SavePlayer(data);
     }
 
     public void QuitGame() {
         inPause = false;
-        SceneManager.LoadScene("MenuInicial");
+        SceneManager.LoadScene("MenuUI");
     }
 }

@@ -4,14 +4,20 @@ using UnityEngine;
 using System.Runtime.Serialization;
 
 [System.Serializable]
-public class PlayerData : MonoBehaviour, ISerializationCallbackReceiver {
+public class PlayerData : ISerializationCallbackReceiver {
 
     public int scene;
     [SerializeField] private int serializedScene;
 
-    public PlayerData (Player player) {
-        scene = player.scene;
+    public PlayerData () {
+        scene = PlayerPrefs.GetInt("sceneInGame", 0);
     }
+
+    /*void Start() {
+        scene = PlayerPrefs.GetInt("sceneInGame", 0);
+
+
+    }*/
 
     // Implementación de ISerializationCallbackReceiver
     public void OnBeforeSerialize() {
@@ -22,5 +28,9 @@ public class PlayerData : MonoBehaviour, ISerializationCallbackReceiver {
     public void OnAfterDeserialize() {
         // Recuperar los valores de las variables de respaldo después de la deserialización
         scene = serializedScene;
+    }
+
+    public void SavePlayerData() {
+        SaveSystem.SavePlayer(this);
     }
 }

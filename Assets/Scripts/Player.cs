@@ -5,10 +5,9 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public int scene = 1;
-    public float[] position = new float[3];
     
     public void SavePlayer() {
-        SaveSystem.SavePlayer(this);
+        //SaveSystem.SavePlayer(this);
     }
 
     public void LoadPlayer() {
