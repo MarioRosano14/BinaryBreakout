@@ -15,11 +15,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Despacho.unity
     guid: 355430cb7148c71498258ebb4b4173c6
   - enabled: 1
-    path: Assets/Scenes/Pasillo.unity
+    path: Assets/Scenes/Pasillo 1.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
     path: Assets/Scenes/Biblioteca.unity
     guid: 78220e33867875a458555198d32a057e
+  - enabled: 1
+    path: Assets/Scenes/Pasillo 2.unity
+    guid: a18344eb3b55e924a8957c34d6b4835e
   - enabled: 1
     path: Assets/Scenes/PingPong.unity
     guid: c6d5123c8f052e340944fe59bfe65b7c

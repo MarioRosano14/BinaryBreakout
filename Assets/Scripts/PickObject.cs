@@ -11,8 +11,6 @@ public class PickObject : MonoBehaviour, IPointerClickHandler
     public static event DelegarDialogos EventoDialogos;
     public GameObject dialogueBox;
 
-    private DialogueData dialogueData;
-
     public void Start() {
         GameObject IM = GameObject.FindWithTag("InventoryManager");
         inventoryManager = IM.GetComponent<InventoryManager>();
@@ -24,7 +22,7 @@ public class PickObject : MonoBehaviour, IPointerClickHandler
             Item item = SIH.item;
             inventoryManager.AddItem(item);
 
-            string[] lines = new string[] {"Has obtenido: " + item.name.ToString()};
+            string[] lines = new string[] {"Has obtenido: " + item.name.ToString() + "."};
             string[] names = new string[] {"Luca"};
             DialogueData dialogueData = new DialogueData(lines, names);
             dialogueBox.SetActive(true);

@@ -10,7 +10,6 @@ public class Dialogue : MonoBehaviour
     public TextMeshProUGUI nameComponent;
     public float textSpeed;
     private DialogueData dialogueData;
-    //public GameObject panel;
     private int index;
     public static bool inDialogue = false;
 
@@ -19,15 +18,21 @@ public class Dialogue : MonoBehaviour
     public GameObject AButton;
     public GameObject DButton;
 
+    private AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
-        // Suscribirse al evento OnButtonPressed
+        // Suscribirse al evento StartDialogue
         PickObject.EventoDialogos += StartDialogue;
         InteractuableObject.EventoDialogos += StartDialogue;
         InventoryManager.EventoDialogos += StartDialogue;
         ClosetScript.EventoDialogos += StartDialogue;
         CastObject.EventoDialogos += StartDialogue;
+        InitialDialogue.EventoDialogos += StartDialogue;
+        ChangeScene.EventoDialogos += StartDialogue;
+
+        audioSource = GetComponent<AudioSource>();
         
         gameObject.SetActive(false);
     }
@@ -70,6 +75,7 @@ public class Dialogue : MonoBehaviour
     {
         foreach(char c in dialogueData.lines[index].ToCharArray())
         {
+            audioSource.Play();
             textComponent.text+=c;
             yield return new WaitForSeconds(textSpeed);
         }
@@ -106,6 +112,8 @@ public class Dialogue : MonoBehaviour
         InventoryManager.EventoDialogos -= StartDialogue;
         ClosetScript.EventoDialogos -= StartDialogue;
         CastObject.EventoDialogos -= StartDialogue;
+        InitialDialogue.EventoDialogos -= StartDialogue;
+        ChangeScene.EventoDialogos -= StartDialogue;
     }
 }
 

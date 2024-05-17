@@ -22,6 +22,6 @@ public class AccessKeypad : MonoBehaviour
     }
 
     private void CambiarEscena() {
-        SceneManager.LoadScene("Pasillo");
+        SceneManager.LoadScene("Pasillo 2");
     }
 }

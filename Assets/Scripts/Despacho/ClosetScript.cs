@@ -47,19 +47,19 @@ public class ClosetScript : MonoBehaviour, IPointerClickHandler
                         dialogueData = null;
                     }
                     else {
-                        lines = new string[] {"Parece que necesito más"};
+                        lines = new string[] {"Parece que necesito más."};
                         names = new string[] {"Profesor"};
                         dialogueData = new DialogueData(lines, names);
                     }
                 }
                 else{
-                    lines = new string[] {"No parece que funcione"};
+                    lines = new string[] {"No parece que funcione."};
                     names = new string[] {"Profesor"};
                     dialogueData = new DialogueData(lines, names);
                 }
             }
             else {
-                lines = new string[] {"Parece que necesito algo aquí"};
+                lines = new string[] {"Parece que necesito algo aquí."};
                 names = new string[] {"Profesor"};
                 dialogueData = new DialogueData(lines, names);
 

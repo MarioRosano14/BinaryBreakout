@@ -20,6 +20,11 @@ public class PlayerPosition : MonoBehaviour
     private bool check = false;
 
     void Start() {
+        gameObject.GetComponent<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>().enabled = false;
+        luca.GetComponent<MovementFollow>().enabled = false;
+        //gameObject.FirstPersonController.enabled = false;
+        //luca.MovementFollow.enabled = false;
+
         if (/*PlayerPrefs.GetInt("sceneInGame", 0) == 2*/false) {
             transform.position = playerPosition1;
             transform.rotation = Quaternion.Euler(playerRotation1);
@@ -38,8 +43,9 @@ public class PlayerPosition : MonoBehaviour
 
     void Update() {
         if (transform.position == playerPosition1 ||
-            transform.position == playerPosition2) {
-                moved = true; 
+            (transform.position == playerPosition2 && transform.rotation == Quaternion.Euler(playerRotation2))) {
+                GetComponent<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>().enabled = true;
+                luca.GetComponent<MovementFollow>().enabled = true;
             }
     }
 }

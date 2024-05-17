@@ -35,26 +35,26 @@ public class InteractuableObject : MonoBehaviour, IPointerClickHandler
                         Destroy(itemInSlot.gameObject);
                         inventoryManager.AddItem(solItem);
 
-                        lines = new string[] {"Has conseguido: " + solItem.name.ToString()};
+                        lines = new string[] {"Has conseguido: " + solItem.name.ToString() + "."};
                         names = new string[] {"Luca"};
                         dialogueData = new DialogueData(lines, names);
 
                         check = true; 
                     }
                     else {
-                        lines = new string[] {"Parece que necesito más"};
+                        lines = new string[] {"Parece que necesito más."};
                         names = new string[] {"Profesor"};
                         dialogueData = new DialogueData(lines, names);
                     }
                 }
                 else{
-                    lines = new string[] {"No parece que funcione"};
+                    lines = new string[] {"No parece que funcione."};
                     names = new string[] {"Profesor"};
                     dialogueData = new DialogueData(lines, names);
                 }
             }
             else {
-                lines = new string[] {"Parece que necesito algo aquí"};
+                lines = new string[] {"Parece que necesito algo aquí."};
                 names = new string[] {"Profesor"};
                 dialogueData = new DialogueData(lines, names);
             }

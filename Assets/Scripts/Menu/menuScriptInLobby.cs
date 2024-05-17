@@ -57,6 +57,11 @@ public class menuScriptInLobby : MonoBehaviour
 
     public void QuitGame() {
         inPause = false;
+
+        if (Dialogue.inDialogue) {
+            Dialogue.inDialogue = false;
+        }
+        
         SceneManager.LoadScene("MenuUI");
     }
 }

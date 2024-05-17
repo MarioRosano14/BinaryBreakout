@@ -22,10 +22,17 @@ public class MovManecillas : MonoBehaviour
     public GameObject drawer;
     public Vector3 offset;
 
+    public GameObject canvas;
+
+    void Start() {
+        canvas.SetActive(false);
+    }
+
     // Update is called once per frame
     void Update()
     {
         if (cameraIdx == CamSwitch.lastSpecialCameraIndex && !menuScript.inPause && !ShowInventory.inInventory && CamSwitch.inSpecial && !Dialogue.inDialogue && !check) {
+            canvas.SetActive(true);
 
             if (Input.GetKeyDown(KeyCode.W)) {
                 if (selected != 2) {
@@ -107,6 +114,9 @@ public class MovManecillas : MonoBehaviour
                 check = true;
                 MoveDrawer();
             }
+        }
+        else {
+            canvas.SetActive(false);
         }
     }
 

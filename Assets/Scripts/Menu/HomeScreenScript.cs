@@ -46,13 +46,13 @@ public class HomeScreenScript : MonoBehaviour
                     SceneManager.LoadScene("Despacho");
                     break;
                 case 2:
-                    SceneManager.LoadScene("Pasillo");
+                    SceneManager.LoadScene("Pasillo 1");
                     break;
                 case 3:
                     SceneManager.LoadScene("Biblioteca");
                     break;
                 case 4:
-                    SceneManager.LoadScene("Pasillo");
+                    SceneManager.LoadScene("Pasillo 2");
                     break;
                 case 5:
                     SceneManager.LoadScene("PingPong");

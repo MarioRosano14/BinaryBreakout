@@ -18,6 +18,17 @@ TagManager:
   - AButton
   - DButton
   - CajaDialogos
+  - startButton
+  - Audio5
+  - Audio6
+  - Audio7
+  - Audio8
+  - Audio9
+  - Audio10
+  - Audio11
+  - Audio12
+  - Audio13
+  - Audio14
   layers:
   - Default
   - TransparentFX

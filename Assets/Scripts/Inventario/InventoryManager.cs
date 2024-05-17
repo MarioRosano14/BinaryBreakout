@@ -105,18 +105,18 @@ public class InventoryManager : MonoBehaviour
             }
             
             if (newItem != null) {
-                lines = new string[] {"Has fabricado: " + newItem.name};
+                lines = new string[] {"Has fabricado: " + newItem.name + "."};
                 names = new string[] {"Luca"};
                 dialogueData = new DialogueData(lines, names);
             }
             else {
-                lines = new string[] {"No creo que sirvan estos objetos"};
+                lines = new string[] {"No creo que sirvan estos objetos."};
                 names = new string[] {"Profesor"};
                 dialogueData = new DialogueData(lines, names);
             }
         }
         else {
-            lines = new string[] {"No es suficiente para combinar"};
+            lines = new string[] {"No es suficiente para combinar."};
             names = new string[] {"Profesor"};
             dialogueData = new DialogueData(lines, names);
         }
