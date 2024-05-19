@@ -31,11 +31,13 @@ public class menuScriptInLobby : MonoBehaviour
                 inPause = false;
 
                 Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
             }
             else {
                 inPause = true;
                 canvas.SetActive(true);
                 Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
             }
         }
     }
@@ -43,13 +45,15 @@ public class menuScriptInLobby : MonoBehaviour
     public void QuitMenu() {
         inPause = false;
         canvas.SetActive(false);
-        Cursor.lockState = CursorLockMode.None;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     public void SaveGame() {
         inPause = false;
         canvas.SetActive(false);
-        Cursor.lockState = CursorLockMode.None;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
 
         PlayerData data = new PlayerData();
         SaveSystem.SavePlayer(data);

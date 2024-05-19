@@ -12,14 +12,7 @@ public class PlayerData : ISerializationCallbackReceiver {
     public PlayerData () {
         scene = PlayerPrefs.GetInt("sceneInGame", 0);
     }
-
-    /*void Start() {
-        scene = PlayerPrefs.GetInt("sceneInGame", 0);
-
-
-    }*/
-
-    // Implementación de ISerializationCallbackReceiver
+    
     public void OnBeforeSerialize() {
         // Guardar los valores en las variables de respaldo antes de la serialización
         serializedScene = scene;

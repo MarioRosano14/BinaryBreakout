@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class RoomMove : MonoBehaviour
 {
     private bool inRange = false;
+    private int lastTag = 0;
     public Canvas canvas;
 
     public void Start() {
@@ -16,9 +17,11 @@ public class RoomMove : MonoBehaviour
         if (other.gameObject.tag == "BibliotecaTrigger" || other.gameObject.tag == "PingPongTrigger") {
             inRange = true;
             if (other.gameObject.tag == "BibliotecaTrigger" && PlayerPrefs.GetInt("sceneInGame", 0) == 2) {
+                lastTag = 1;
                 canvas.gameObject.SetActive(true);
             }
             else if (other.gameObject.tag == "PingPongTrigger" && PlayerPrefs.GetInt("sceneInGame", 0) == 4) {
+                lastTag = 2;
                 canvas.gameObject.SetActive(true);
             }
         }
@@ -36,14 +39,14 @@ public class RoomMove : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.E)) {
                 
-                if (PlayerPrefs.GetInt("sceneInGame", 0) == 2) {
+                if (PlayerPrefs.GetInt("sceneInGame", 0) == 2 && lastTag == 1) {
                     PlayerPrefs.SetInt("sceneInGame", 3);
                     Cursor.lockState = CursorLockMode.None;
                     Cursor.visible = true;
                     PlayerPosition.moved = false;
                     SceneManager.LoadScene("Biblioteca");
                 }
-                else if (PlayerPrefs.GetInt("sceneInGame", 0) == 4) {
+                else if (PlayerPrefs.GetInt("sceneInGame", 0) == 4 && lastTag == 2) {
                     PlayerPrefs.SetInt("sceneInGame", 5);
                     Cursor.lockState = CursorLockMode.None;
                     Cursor.visible = true;
