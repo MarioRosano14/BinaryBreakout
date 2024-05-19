@@ -43,14 +43,12 @@ public class RoomMove : MonoBehaviour
                     PlayerPrefs.SetInt("sceneInGame", 3);
                     Cursor.lockState = CursorLockMode.None;
                     Cursor.visible = true;
-                    PlayerPosition.moved = false;
                     SceneManager.LoadScene("Biblioteca");
                 }
                 else if (PlayerPrefs.GetInt("sceneInGame", 0) == 4 && lastTag == 2) {
                     PlayerPrefs.SetInt("sceneInGame", 5);
                     Cursor.lockState = CursorLockMode.None;
                     Cursor.visible = true;
-                    PlayerPosition.moved = false;
                     SceneManager.LoadScene("PingPong");
                 }
             }
