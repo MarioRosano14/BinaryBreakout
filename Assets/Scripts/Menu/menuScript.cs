@@ -68,13 +68,14 @@ public class menuScript : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
         }
 
+        Time.timeScale = 1f;
+
         PlayerData data = new PlayerData();
         SaveSystem.SavePlayer(data);
     }
 
     public void QuitGame() {
         inPause = false;
-        Time.timeScale = 1f;
 
         if (Dialogue.inDialogue) {
             Dialogue.inDialogue = false;
@@ -87,6 +88,8 @@ public class menuScript : MonoBehaviour
         if (CamSwitch.inSpecial) {
             CamSwitch.inSpecial = false;
         }
+
+        Time.timeScale = 1f;
 
         SceneManager.LoadScene("MenuUI");
     }
