@@ -32,6 +32,7 @@ public class menuScript : MonoBehaviour
 
                 if (Dialogue.inDialogue) {
                     Cursor.lockState = CursorLockMode.Locked;
+                    Cursor.visible = false;
                 }
 
                 Time.timeScale = 1f;
@@ -42,6 +43,7 @@ public class menuScript : MonoBehaviour
 
                 if (Dialogue.inDialogue) {
                     Cursor.lockState = CursorLockMode.None;
+                    Cursor.visible = true;
                 }
 
                 Time.timeScale = 0f;
@@ -55,6 +57,7 @@ public class menuScript : MonoBehaviour
 
         if (Dialogue.inDialogue) {
             Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
 
         Time.timeScale = 1f;
@@ -66,6 +69,7 @@ public class menuScript : MonoBehaviour
 
         if (Dialogue.inDialogue) {
             Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
 
         Time.timeScale = 1f;
